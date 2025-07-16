@@ -1,0 +1,87 @@
+;; Kanata keyboard configuration file
+;; Layer 1 (default): caps + 1 to switch
+;; - caps + ikjl -> arrow keys
+;; - caps + df -> home/end
+;; - caps + h; -> page up/down
+;; - caps + uo -> left/right word
+;; - caps + space -> select entire line
+;; - caps key itself doesn't toggle case
+;; Layer 2: caps + 2 to switch
+;; - ikjl: arrow keys
+;; - h; -> page up/down
+;; - df -> home/end
+;; Define the input keys
+(defsrc
+  esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+  caps a    s    d    f    g    h    j    k    l    ;    '    ret
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+  lctl lmet lalt           spc            ralt rmet rctl
+)
+;; Define aliases for layer switching
+(defalias
+  ;; Layer switching
+  l1 (layer-switch layer1)
+  l2 (layer-switch layer2)
+  ;; Layer modifiers
+  nav1 (layer-while-held nav-layer1)
+  nav2 (layer-while-held nav-layer2)
+  ;; Special keys
+  home home
+  end end
+  pgup pgup
+  pgdn pgdn
+  up up
+  down down
+  left left
+  right right
+  lword (multi lctl left)  ;; Left word (Ctrl+Left)
+  rword (multi lctl right) ;; Right word (Ctrl+Right)
+  selline (multi home lsft end) ;; Select entire line
+)
+;; Default layer (layer1)
+(deflayer layer1
+  esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+  @nav1 a    s    d    f    g    h    j    k    l    ;    '    ret
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+  lctl lmet lalt           spc            ralt rmet rctl
+)
+;; Navigation layer 1 (when caps is held in layer1)
+(deflayer nav-layer1
+  _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    @l1  @l2  _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    @lword @up   @rword _    _    _    _
+  _    _    _    @home @end  _    @pgup @left @down @right @pgdn _    _
+  _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _              @selline         _    _    _
+)
+;; Layer 2
+(deflayer layer2
+  esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    e    r    t    y    u    @up    o    p    [    ]    \
+  @nav2 a    s    d    f    g    h    @left    @down    @right    ;    '    ret
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+  lctl lmet lalt           spc            ralt rmet rctl
+)
+;; Navigation layer 2 (when caps is held in layer2)
+(deflayer nav-layer2
+  _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    @l1  @l2  _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    @up  _    _    _    _    _
+  _    _    _    @home @end  _    @pgup @left @down @right @pgdn _    _
+  _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _              _              _    _    _
+)
+;; Configuration options
+(defcfg
+  ;; Process keys that aren't in defsrc
+  process-unmapped-keys yes
+  ;; Windows tray icon settings
+  tray-icon kanata.ico
+  icon-match-layer-name yes
+  tooltip-layer-changes yes
+)
