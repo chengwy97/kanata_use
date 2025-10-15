@@ -1,0 +1,16 @@
+[Unit]
+Description=Kanata remap: CapsLock + K → Right Arrow
+After=multi-user.target
+
+[Service]
+ExecStart=/home/eame/.tools/kanata/kanata --cfg /home/eame/.tools/kanata/kanata.kbd
+Restart=always
+RestartSec=1
+StandardOutput=journal
+StandardError=journal
+
+# 如果需要延迟启动键盘 remap，可以加这一行：
+# ExecStartPre=/bin/sleep 3
+
+[Install]
+WantedBy=default.target
