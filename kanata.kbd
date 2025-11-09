@@ -6,6 +6,7 @@
 ;; - caps + uo -> left/right word
 ;; - caps + space -> select entire line
 ;; - caps + y -> bspc
+;; - caps + z -> delete
 ;; - caps + m -> PrintScreen (截图)
 ;; - caps key itself doesn't toggle case
 ;; Layer 2: caps + 2 to switch
@@ -45,6 +46,7 @@
   rword (multi lctl right)
   selline (multi home lsft end)
   bspc bspc
+  del del
 
   ;; ✅ Print Screen key (截图)
   prtsc prtsc
@@ -66,7 +68,7 @@
   _    @l1  @l2  _    _    _    _    _    _    _    _    _    _    _
   _    _    _    _    _    _    @bspc @lword @up    @rword _    _    _    _
   _    _    _    @home @end  _    @pgup @left @down @right @pgdn _    _
-  _    _    _    _    _    _    _    @prtsc _    _    _    _    ;; ✅ Caps + m = PrintScreen
+  _    @del _    _    _    _    _    @prtsc _    _    _    _    ;; ✅ Caps + z = Delete, Caps + m = PrintScreen
   _    _    _          @selline           _    _    _
 )
 

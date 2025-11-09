@@ -3,7 +3,7 @@ Description=Kanata remap: CapsLock + K → Right Arrow
 After=multi-user.target
 
 [Service]
-ExecStart=/home/eame/.tools/kanata/kanata --cfg /home/eame/.tools/kanata/kanata.kbd
+ExecStart=/home/eame/Desktop/cpp_work/kanata_use/kanata --cfg /home/eame/Desktop/cpp_work/kanata_use/kanata.kbd
 Restart=always
 RestartSec=1
 StandardOutput=journal

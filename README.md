@@ -41,3 +41,12 @@
 
 更多详细语法可参考官方文档或 GitHub 项目说明。
 
+
+```bash
+sudo cp kanata.service /etc/systemd/system/
+sudo systemctl daemon-reload
+sudo systemctl enable kanata.service
+sudo systemctl start kanata.service
+sudo systemctl status kanata.service
+```
+
